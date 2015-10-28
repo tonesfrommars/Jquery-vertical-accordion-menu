@@ -4,8 +4,8 @@ class dc_jqaccordion_widget extends WP_Widget {
     /** constructor */
     function dc_jqaccordion_widget() {
 
-		$name =			'Brugerdefineret vertikal menu';
-		$desc = 		'Brug denne widget til at tilføje en af dine brugerdefinerede menuer vertikalt, som en widget.';
+		$name =			'jQuery Accordion Menu';
+		$desc = 		'Vertical Accordion From Custom Menus.';
 		$id_base = 		'dc_jqaccordion_widget';
 		$widget_base =  'dc_jqaccordion_widget_item';
 		$css_class = 	'';
@@ -150,28 +150,28 @@ class dc_jqaccordion_widget extends WP_Widget {
 	</p>
 	<p>
 		<input type="radio" id="<?php echo $this->get_field_id('event1'); ?>" name="<?php echo $this->get_field_name('event'); ?>" value="click"<?php checked( $event, 'click' ); ?> />
-		<label for="<?php echo $this->get_field_id('event1'); ?>"><?php _e( 'Klik' , 'dcjq-accordion' ); ?></label>
+		<label for="<?php echo $this->get_field_id('event1'); ?>"><?php _e( 'Click' , 'dcjq-accordion' ); ?></label>
 		&nbsp;<input type="radio" id="<?php echo $this->get_field_id('event2'); ?>" name="<?php echo $this->get_field_name('event'); ?>" value="hover"<?php checked( $event, 'hover' ); ?> />
-		<label for="<?php echo $this->get_field_id('event2'); ?>"><?php _e( 'Hover (mus over)' , 'dcjq-accordion' ); ?></label>
+		<label for="<?php echo $this->get_field_id('event2'); ?>"><?php _e( 'Hover' , 'dcjq-accordion' ); ?></label>
 	</p>
 	<p>
 		<input type="checkbox" value="true" class="checkbox" id="<?php echo $this->get_field_id('autoClose'); ?>" name="<?php echo $this->get_field_name('autoClose'); ?>"<?php checked( $autoClose, 'true' ); ?> />
-		<label for="<?php echo $this->get_field_id('autoClose'); ?>"><?php _e( 'Auto-luk åbne menuer' , 'dcjq-accordion' ); ?></label><br />
+		<label for="<?php echo $this->get_field_id('autoClose'); ?>"><?php _e( 'Auto Close Open Menus' , 'dcjq-accordion' ); ?></label><br />
 
 		<input type="checkbox" value="true" class="checkbox" id="<?php echo $this->get_field_id('saveState'); ?>" name="<?php echo $this->get_field_name('saveState'); ?>"<?php checked( $saveState, 'true'); ?> />
-		<label for="<?php echo $this->get_field_id('saveState'); ?>"><?php _e( 'Gem menu tilstand (bruger cookies)' , 'dcjq-accordion' ); ?></label><br />
+		<label for="<?php echo $this->get_field_id('saveState'); ?>"><?php _e( 'Save Menu State (uses cookies)' , 'dcjq-accordion' ); ?></label><br />
 
 		<input type="checkbox" value="true" class="checkbox" id="<?php echo $this->get_field_id('autoExpand'); ?>" name="<?php echo $this->get_field_name('autoExpand'); ?>"<?php checked( $autoExpand, 'true' ); ?> />
-		<label for="<?php echo $this->get_field_id('autoExpand'); ?>"><?php _e( 'Auto-åben baseret på nuværende side/emne' , 'dcjq-accordion' ); ?></label><br />
+		<label for="<?php echo $this->get_field_id('autoExpand'); ?>"><?php _e( 'Auto Expand Based on Current Page/Item' , 'dcjq-accordion' ); ?></label><br />
 
 		<input type="checkbox" value="true" class="checkbox" id="<?php echo $this->get_field_id('disableLink'); ?>" name="<?php echo $this->get_field_name('disableLink'); ?>"<?php checked( $disableLink, 'true' ); ?> />
-		<label for="<?php echo $this->get_field_id('disableLink'); ?>"><?php _e( 'Deaktivér forælder links' , 'dcjq-accordion' ); ?></label><br />
+		<label for="<?php echo $this->get_field_id('disableLink'); ?>"><?php _e( 'Disable Parent Links' , 'dcjq-accordion' ); ?></label><br />
 
 		<input type="checkbox" value="true" class="checkbox" id="<?php echo $this->get_field_id('menuClose'); ?>" name="<?php echo $this->get_field_name('menuClose'); ?>"<?php checked( $menuClose, 'true' ); ?> />
-		<label for="<?php echo $this->get_field_id('menuClose'); ?>"><?php _e( 'Luk menu (kun hover)' , 'dcjq-accordion' ); ?></label><br />
+		<label for="<?php echo $this->get_field_id('menuClose'); ?>"><?php _e( 'Close Menu (hover only)' , 'dcjq-accordion' ); ?></label><br />
 
 		<input type="checkbox" value="true" class="checkbox" id="<?php echo $this->get_field_id('showCount'); ?>" name="<?php echo $this->get_field_name('showCount'); ?>"<?php checked( $showCount, 'true' ); ?> />
-		<label for="<?php echo $this->get_field_id('showCount'); ?>"><?php _e( 'Vis antal' , 'dcjq-accordion' ); ?></label>
+		<label for="<?php echo $this->get_field_id('showCount'); ?>"><?php _e( 'Show Count' , 'dcjq-accordion' ); ?></label>
 	</p>
 	<!--p>
 		<label for="<?php echo $this->get_field_id('classMenu'); ?>"><?php _e('Menu Class:') ?></label>
@@ -182,31 +182,31 @@ class dc_jqaccordion_widget extends WP_Widget {
 		<input type="text" id="<?php echo $this->get_field_id('classDisable'); ?>" name="<?php echo $this->get_field_name('classDisable'); ?>" value="<?php echo $classDisable; ?>" size="15" />
 	</p-->
 	<p>
-		<label for="<?php echo $this->get_field_id('hoverDelay'); ?>"><?php _e('Hover forsinkelse:', 'dcjq-accordion'); ?>
+		<label for="<?php echo $this->get_field_id('hoverDelay'); ?>"><?php _e('Hover Delay:', 'dcjq-accordion'); ?>
 		<select name="<?php echo $this->get_field_name('hoverDelay'); ?>" id="<?php echo $this->get_field_id('hoverDelay'); ?>" >
-			<option value='0' <?php selected( $hoverDelay, '0'); ?> >Ingen forsinkelse</option>
-			<option value='200' <?php selected( $hoverDelay, '200'); ?> >0,2 sek</option>
-			<option value='400' <?php selected( $hoverDelay, '400'); ?> >0,4 sek</option>
-			<option value='600' <?php selected( $hoverDelay, '600'); ?> >0,6 sek</option>
-			<option value='800' <?php selected( $hoverDelay, '800'); ?> >0,8 sek</option>
-			<option value='1000' <?php selected( $hoverDelay, '1000'); ?> >1,0 sek</option>
+			<option value='0' <?php selected( $hoverDelay, '0'); ?> >No Delay</option>
+			<option value='200' <?php selected( $hoverDelay, '200'); ?> >0,2 sec</option>
+			<option value='400' <?php selected( $hoverDelay, '400'); ?> >0,4 sec</option>
+			<option value='600' <?php selected( $hoverDelay, '600'); ?> >0,6 sec</option>
+			<option value='800' <?php selected( $hoverDelay, '800'); ?> >0,8 sec</option>
+			<option value='1000' <?php selected( $hoverDelay, '1000'); ?> >1,0 sec</option>
 		</select>
 		</label>
 	</p>
-	<p><label for="<?php echo $this->get_field_id('speed'); ?>"><?php _e('Animations hastighed:', 'dcjq-accordion'); ?>
+	<p><label for="<?php echo $this->get_field_id('speed'); ?>"><?php _e('Animation Speed:', 'dcjq-accordion'); ?>
 		<select name="<?php echo $this->get_field_name('speed'); ?>" id="<?php echo $this->get_field_id('speed'); ?>" >
-			<option value='slow' <?php selected( $speed, 'slow'); ?> >Langsom</option>
+			<option value='slow' <?php selected( $speed, 'slow'); ?> >Slow</option>
 			<option value='normal' <?php selected( $speed, 'normal'); ?> >Normal</option>
-			<option value='fast' <?php selected( $speed, 'fast'); ?> >Hurtig</option>
+			<option value='fast' <?php selected( $speed, 'fast'); ?> >fast</option>
 		</select>
 		</label>
 	</p>
-	<p><label for="<?php echo $this->get_field_id('skin'); ?>"><?php _e('Udseende:', 'dcjq-accordion'); ?>  <?php
+	<p><label for="<?php echo $this->get_field_id('skin'); ?>"><?php _e('Skin:', 'dcjq-accordion'); ?>  <?php
 
 		// http://www.codewalkers.com/c/a/File-Manipulation-Code/List-files-in-a-directory-no-subdirectories/
 
 		echo "<select name='".$this->get_field_name('skin')."' id='".$this->get_field_id('skin')."'>";
-		echo "<option value='no-theme' ".selected( $skin, 'no-theme', false).">Vælg</option>";
+		echo "<option value='no-theme' ".selected( $skin, 'no-theme', false).">No Theme</option>";
 
 		//The path to the style directory
 		$dirpath = plugin_dir_path(__FILE__) . 'skins/';
