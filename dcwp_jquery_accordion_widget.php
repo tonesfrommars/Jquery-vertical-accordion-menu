@@ -2,7 +2,7 @@
 
 class dc_jqaccordion_widget extends WP_Widget {
     /** constructor */
-    function dc_jqaccordion_widget() {
+    function __construct() {
 
 		$name =			'jQuery Accordion Menu';
 		$desc = 		'Vertical Accordion From Custom Menus.';

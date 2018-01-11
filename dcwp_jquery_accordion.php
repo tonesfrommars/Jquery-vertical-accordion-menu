@@ -13,14 +13,14 @@ global $registered_skins;
 
 class dc_jqaccordion {
 
-	function dc_jqaccordion(){
+	function __construct() {
 		global $registered_skins;
-	
+
 		if(!is_admin()){
-		
+
 			// Header styles
 			add_action( 'wp_enqueue_scripts', array('dc_jqaccordion', 'header') );
-		
+
 			// Shortcodes
 			add_shortcode( 'dcwp-jquery-accordion', 'dcwp_dc_jqaccordion_shortcode' );
 		}
@@ -29,7 +29,7 @@ class dc_jqaccordion {
 	}
 
 	public static function header(){
-		
+
 		// Scripts
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jqueryhoverintent', plugin_dir_url( __FILE__ ) . '/js/jquery.hoverIntent.minified.js', array('jquery') );
@@ -52,7 +52,7 @@ add_action('widgets_init', create_function('', 'return register_widget("dc_jqacc
 * Create a menu shortcode
 */
 function dcwp_dc_jqaccordion_shortcode($atts){
-	
+
 	extract(shortcode_atts( array(
 		'menu' => '',
 		'event' => 'click',
@@ -70,16 +70,16 @@ function dcwp_dc_jqaccordion_shortcode($atts){
 		'skin' => 'No Theme',
 		'id' => ''
 	), $atts));
-	
+
 	$_SESSION['dc_jqaccordion_menu'] = $_SESSION['dc_jqaccordion_menu'] != '' ? $_SESSION['dc_jqaccordion_menu'] + 1 : 1 ;
 	$id = $id == '' ? 's'.$_SESSION['dc_jqaccordion_menu'] : 's'.$id ;
 	$menuId = 'dc_jqaccordion_widget-'.$id.'-item';
 	$out = '';
-	
+
 	if($skin != 'No Theme'){
 		$out .= "\n\t<link rel=\"stylesheet\" href=\"".dc_jqaccordion::get_plugin_directory()."/skin.php?widget_id=".$id."&amp;skin=".strtolower($skin)."\" type=\"text/css\" media=\"screen\"  />";
 	}
-	
+
 	$out .= '<script type="text/javascript">
 				jQuery(document).ready(function($) {
 					jQuery("#'.$menuId.'").dcAccordion({
@@ -99,13 +99,13 @@ function dcwp_dc_jqaccordion_shortcode($atts){
 				});
 			</script>';
 	$out .= '<div class="dcjq-accordion" id="'.$menuId.'">';
-	$out .= wp_nav_menu( 
-					array( 
-						'fallback_cb' => '', 
+	$out .= wp_nav_menu(
+					array(
+						'fallback_cb' => '',
 						'menu' => $menu,
 						'menu_class' => $menu_class,
 						'echo' => false
-						) 
+						)
 					);
 	$out .= '</div>';
 	return $out;
